@@ -1,5 +1,7 @@
+import json
 import requests
 from bs4 import BeautifulSoup
+from settings import *
 
 
 def main(data, context):
@@ -12,6 +14,13 @@ def main(data, context):
         contributions.append(tags.get('data-count'))
 
     today = contributions[len(contributions) - 1]  # type: str
+
+    if today == "0":
+        text = "<@" + SLACK_USER_ID + "> まだGitHubの芝が生えてません！"  # type: str
+        data = {"text": text}  # type: dict
+        payload = json.dumps(data).encode("utf-8")
+        response = requests.post(SLACK_WEBHOOK_URL, payload)
+        print(response)
 
 
 if __name__ == "__main__":
