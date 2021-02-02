@@ -14,10 +14,12 @@ def main(data, context):
         contributions.append(tags.get('data-count'))
 
     today = contributions[len(contributions) - 1]  # type: str
+    print("today=" + today)
 
     if today == "0":
         text = "<@" + SLACK_USER_ID + "> まだGitHubの芝が生えてません！"  # type: str
         data = {"text": text}  # type: dict
+        print("data=" + data)
         payload = json.dumps(data).encode("utf-8")
         response = requests.post(SLACK_WEBHOOK_URL, payload)
         print(response)
