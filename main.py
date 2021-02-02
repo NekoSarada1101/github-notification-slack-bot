@@ -19,7 +19,7 @@ def main(data, context):
     if today == "0":
         text = "<@" + SLACK_USER_ID + "> まだGitHubの芝が生えてません！"  # type: str
         data = {"text": text}  # type: dict
-        print("data=" + data)
+        print("data=" + str(data))
         payload = json.dumps(data).encode("utf-8")
         response = requests.post(SLACK_WEBHOOK_URL, payload)
         print(response)
