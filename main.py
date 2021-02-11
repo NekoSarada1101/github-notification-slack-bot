@@ -5,7 +5,7 @@ from settings import *
 
 
 def main(data, context):
-    response = requests.get("https://github.com/users/NekoSarada1101/contributions")
+    response = requests.get("https://github.com/users/{}/contributions".format(GITHUB_USER_NAME))
     print(response)
     print(response.text)
     soup = BeautifulSoup(response.text, "html.parser")
